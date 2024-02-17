@@ -15,3 +15,8 @@ pianoKeys.forEach((key) => {
   console.log(key.dataset.key);
   key.addEventListener("click", () => playTune(key.dataset.key));
 });
+
+// captura o Keyboard Event e reproduz o som conforme as teclas que são tocadas
+document.addEventListener("keydown", (e) => {
+  playTune(e.key);
+})
