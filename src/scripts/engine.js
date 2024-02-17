@@ -1,6 +1,9 @@
 // pega todas as teclas(key) do documento principal
 const pianoKeys = document.querySelectorAll(".piano-keys .key");
 
+// as teclas só serão tocadas se estiverem dentro desse array
+let mapedKeys = [];
+
 // variável criada para acessar o caminho dos audios
 let audio = new Audio("src/tunes/a.wav");
 
@@ -23,11 +26,15 @@ const playTune = (key) => {
 
 // para cada tecla clicada será reproduzido o audio capturado pela função playTune
 pianoKeys.forEach((key) => {
-  console.log(key.dataset.key);
   key.addEventListener("click", () => playTune(key.dataset.key));
+  // inclui no mapedKeys apenas as keys(letras) que possuem o dataset
+  mapedKeys.push(key.dataset.key);
 });
 
 // captura o Keyboard Event e reproduz o som conforme as teclas que são tocadas
 document.addEventListener("keydown", (e) => {
-  playTune(e.key);
+  // só reproduz o som/evento se a key estiver inclusa em mapedKeys
+  if (mapedKeys.includes(e.key)) {
+    playTune(e.key);
+  }
 })
