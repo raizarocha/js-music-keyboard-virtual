@@ -8,6 +8,17 @@ let audio = new Audio("src/tunes/a.wav");
 const playTune = (key) => {
   audio.src = `src/tunes/${key}.wav`;
   audio.play();
+
+  // pega no elemento html a data-key equivalente a letra(tecla) tocada 
+  const clickedKey = document.querySelector(`[data-key="${key}"]`);
+
+  // adiciona dinamicamente a classe "active"
+  clickedKey.classList.add("active");
+
+  // cria um contador que a cada 150ms removerá a classe "active"
+  setTimeout(() => {
+    clickedKey.classList.remove("active");
+  }, 150);
 };
 
 // para cada tecla clicada será reproduzido o audio capturado pela função playTune
