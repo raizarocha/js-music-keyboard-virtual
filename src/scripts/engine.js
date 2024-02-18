@@ -1,6 +1,9 @@
 // pega todas as teclas(key) do documento principal
 const pianoKeys = document.querySelectorAll(".piano-keys .key");
 
+// pega o input de volume
+const volumeSlider = document.querySelector(".volume-slider input");
+
 // as teclas só serão tocadas se estiverem dentro desse array
 let mapedKeys = [];
 
@@ -37,4 +40,12 @@ document.addEventListener("keydown", (e) => {
   if (mapedKeys.includes(e.key)) {
     playTune(e.key);
   }
-})
+});
+
+// captura o valor do evento que irá determinar o volume dos audios
+const handleVolume = (e) => {
+  audio.volume = e.target.value;
+};
+
+// sempre que o input de volume for manipulado, chama a função handleVolume
+volumeSlider.addEventListener("input", handleVolume);
