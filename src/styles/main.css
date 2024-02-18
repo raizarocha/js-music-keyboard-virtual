@@ -136,3 +136,8 @@ header .column span {
     to bottom #000000, #434343
   );
 }
+
+/* esconde as letras das teclas */
+.piano-keys .key.hide span {
+  display: none;
+}
